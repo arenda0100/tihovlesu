@@ -41,8 +41,8 @@ if ("IntersectionObserver" in window) {
       });
     },
     {
-      threshold: 0.12,
-      rootMargin: "0px 0px -25px 0px"
+      threshold: 0.08,
+      rootMargin: "0px 0px -20px 0px"
     }
   );
 
