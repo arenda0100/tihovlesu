@@ -1,118 +1,264 @@
 
-document.addEventListener("DOMContentLoaded", () => {
-  // Плавное появление блоков во время прокрутки
-  const revealElements = document.querySelectorAll(".reveal");
+const menuToggle = document.querySelector("#menuToggle");
+const navigation = document.querySelector("#navigation");
 
-  if ("IntersectionObserver" in window) {
-    const observer = new IntersectionObserver(
-      (entries, currentObserver) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            currentObserver.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        threshold: 0.12,
-        rootMargin: "0px 0px -35px 0px"
-      }
-    );
+// МОБИЛЬНОЕ МЕНЮ
 
-    revealElements.forEach((element) => observer.observe(element));
-  } else {
-    revealElements.forEach((element) => element.classList.add("visible"));
-  }
+function closeMenu() {
+  menuToggle.classList.remove("active");
+  navigation.classList.remove("open");
+  menuToggle.setAttribute("aria-expanded", "false");
+  menuToggle.setAttribute("aria-label", "Открыть меню");
+}
 
-  // Мягкое свечение за курсором на компьютере
-  const glow = document.querySelector(".cursor-glow");
+menuToggle.addEventListener("click", () => {
+  const isOpen = navigation.classList.toggle("open");
 
-  if (glow && window.matchMedia("(pointer: fine)").matches) {
-    window.addEventListener(
-      "pointermove",
-      (event) => {
-        glow.style.left = `${event.clientX}px`;
-        glow.style.top = `${event.clientY}px`;
-      },
-      { passive: true }
-    );
-  }
+  menuToggle.classList.toggle("active", isOpen);
+  menuToggle.setAttribute("aria-expanded", String(isOpen));
+  menuToggle.setAttribute(
+    "aria-label",
+    isOpen ? "Закрыть меню" : "Открыть меню"
+  );
+});
 
-  // Переключение цен: будни и выходные
-  const priceSwitch = document.querySelector(".price-switch");
-  const switchButtons = document.querySelectorAll(".switch-button");
-  const pricePeriod = document.querySelector(".price-period");
+navigation.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", closeMenu);
+});
 
-  const prices = {
-    weekdays: {
-      4: 1100,
-      6: 1170,
-      8: 1270
+window.addEventListener("resize", () => {
+  if (window.innerWidth > 700) closeMenu();
+});
+
+// ПЛАВНОЕ ПОЯВЛЕНИЕ ЭЛЕМЕНТОВ
+
+const revealElements = document.querySelectorAll(".reveal");
+
+if ("IntersectionObserver" in window) {
+  const revealObserver = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
     },
-    weekend: {
-      4: 1330,
-      6: 1440,
-      8: 1500
+    { threshold: 0.12 }
+  );
+
+  revealElements.forEach(element => {
+    revealObserver.observe(element);
+  });
+} else {
+  revealElements.forEach(element => {
+    element.classList.add("visible");
+  });
+}
+
+// ГАЛЕРЕИ КАРТОЧЕК
+
+const galleries = {
+  house: {
+    title: "Black House",
+    description: "Дом для отдыха среди природы",
+    photos: [
+      "images/house-1.jpg",
+      "images/house-2.jpg",
+      "images/house-3.jpg"
+    ]
+  },
+
+  bath: {
+    title: "Баня на дровах",
+    description: "Живой огонь, тепло и отдых",
+    photos: [
+      "images/bath-1.jpg",
+      "images/bath-2.jpg",
+      "images/bath-3.jpg"
+    ]
+  },
+
+  furako: {
+    title: "Фурако",
+    description: "Горячая вода под открытым небом",
+    photos: [
+      "images/furako-1.jpg",
+      "images/furako-2.jpg",
+      "images/furako-3.jpg"
+    ]
+  }
+};
+
+const modal = document.querySelector("#galleryModal");
+const modalClose = document.querySelector("#modalClose");
+const galleryTitle = document.querySelector("#galleryTitle");
+const galleryDescription = document.querySelector("#galleryDescription");
+const galleryGrid = document.querySelector("#galleryGrid");
+const galleryCounter = document.querySelector("#galleryCounter");
+const galleryPrev = document.querySelector("#galleryPrev");
+const galleryNext = document.querySelector("#galleryNext");
+
+let activeGallery = null;
+let activePhotoIndex = 0;
+let previousFocus = null;
+
+function renderGallery() {
+  if (!activeGallery) return;
+
+  const gallery = galleries[activeGallery];
+
+  galleryTitle.textContent = gallery.title;
+  galleryDescription.textContent = gallery.description;
+  galleryCounter.textContent =
+    `${String(activePhotoIndex + 1).padStart(2, "0")} / 03`;
+
+  galleryGrid.innerHTML = "";
+
+  // На телефоне активное фото показывается первым.
+  const mobile = window.matchMedia("(max-width: 700px)").matches;
+
+  const indices = mobile
+    ? [
+        activePhotoIndex,
+        (activePhotoIndex + 1) % 3,
+        (activePhotoIndex + 2) % 3
+      ]
+    : [0, 1, 2];
+
+  indices.forEach(index => {
+    const photoPath = gallery.photos[index];
+
+    const photo = document.createElement("div");
+    photo.className = "gallery-photo";
+    photo.dataset.index = String(index);
+
+    if (index === activePhotoIndex) {
+      photo.classList.add("is-active");
     }
-  };
 
-  function updatePrices(period) {
-    const isWeekend = period === "weekend";
+    const label = document.createElement("span");
+    label.textContent = `ФОТО ${String(index + 1).padStart(2, "0")}`;
 
-    priceSwitch.classList.toggle("is-weekend", isWeekend);
+    const filename = document.createElement("small");
+    filename.textContent = photoPath;
 
-    switchButtons.forEach((button) => {
-      const active = button.dataset.period === period;
-      button.classList.toggle("active", active);
-      button.setAttribute("aria-pressed", String(active));
+    const number = document.createElement("span");
+    number.className = "photo-number";
+    number.textContent = `${String(index + 1).padStart(2, "0")} / 03`;
+
+    photo.append(label, filename, number);
+
+    // Пустые места остаются заглушками, пока фото не добавлены.
+    // Если файл появится, он загрузится автоматически.
+    const img = new Image();
+    img.alt = `${gallery.title} — фотография ${index + 1}`;
+
+    img.addEventListener("load", () => {
+      photo.querySelector("span").remove();
+      photo.querySelector("small").remove();
+      photo.prepend(img);
     });
 
-    pricePeriod.textContent = isWeekend
-      ? "ПЯТНИЦА — СУББОТА"
-      : "ВОСКРЕСЕНЬЕ — ЧЕТВЕРГ";
-
-    document.querySelectorAll(".price-value").forEach((element) => {
-      const guests = element.dataset.guests;
-      const price = prices[period][guests];
-
-      element.style.opacity = "0";
-
-      window.setTimeout(() => {
-        element.innerHTML = `${price} <small>BYN</small>`;
-        element.style.opacity = "1";
-      }, 160);
+    img.addEventListener("error", () => {
+      img.remove();
     });
+
+    img.src = photoPath;
+
+    photo.addEventListener("click", () => {
+      activePhotoIndex = index;
+      renderGallery();
+    });
+
+    galleryGrid.appendChild(photo);
+  });
+}
+
+function openGallery(galleryName) {
+  if (!galleries[galleryName]) return;
+
+  activeGallery = galleryName;
+  activePhotoIndex = 0;
+  previousFocus = document.activeElement;
+
+  renderGallery();
+
+  modal.classList.add("open");
+  modal.setAttribute("aria-hidden", "false");
+  document.body.classList.add("modal-open");
+
+  modalClose.focus();
+}
+
+function closeGallery() {
+  modal.classList.remove("open");
+  modal.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("modal-open");
+
+  activeGallery = null;
+
+  if (previousFocus && typeof previousFocus.focus === "function") {
+    previousFocus.focus();
+  }
+}
+
+document.querySelectorAll("[data-gallery]").forEach(card => {
+  card.addEventListener("click", () => {
+    openGallery(card.dataset.gallery);
+  });
+});
+
+modalClose.addEventListener("click", closeGallery);
+
+modal.querySelector("[data-close]").addEventListener(
+  "click",
+  closeGallery
+);
+
+galleryPrev.addEventListener("click", () => {
+  if (!activeGallery) return;
+
+  activePhotoIndex =
+    (activePhotoIndex + 2) % 3;
+
+  renderGallery();
+});
+
+galleryNext.addEventListener("click", () => {
+  if (!activeGallery) return;
+
+  activePhotoIndex =
+    (activePhotoIndex + 1) % 3;
+
+  renderGallery();
+});
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") {
+    if (modal.classList.contains("open")) {
+      closeGallery();
+    } else {
+      closeMenu();
+    }
   }
 
-  switchButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      updatePrices(button.dataset.period);
-    });
-  });
+  if (modal.classList.contains("open")) {
+    if (event.key === "ArrowRight") {
+      activePhotoIndex = (activePhotoIndex + 1) % 3;
+      renderGallery();
+    }
 
-  // Мобильное меню
-  const menuToggle = document.querySelector(".menu-toggle");
-  const nav = document.querySelector(".nav");
-
-  menuToggle.addEventListener("click", () => {
-    const isOpen = nav.classList.toggle("open");
-
-    menuToggle.textContent = isOpen ? "✕" : "☰";
-    menuToggle.setAttribute("aria-expanded", String(isOpen));
-  });
-
-  nav.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => {
-      nav.classList.remove("open");
-      menuToggle.textContent = "☰";
-      menuToggle.setAttribute("aria-expanded", "false");
-    });
-  });
-
-  // Не запускаем анимации, если пользователь отключил их в системе
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    document.querySelectorAll(".reveal").forEach((element) => {
-      element.classList.add("visible");
-    });
+    if (event.key === "ArrowLeft") {
+      activePhotoIndex = (activePhotoIndex + 2) % 3;
+      renderGallery();
+    }
   }
 });
+
+// ПРИ ИЗМЕНЕНИИ РАЗМЕРА ЭКРАНА ОБНОВЛЯЕМ ГАЛЕРЕЮ
+
+window.addEventListener("resize", () => {
+  if (activeGallery) renderGallery();
+});
+
