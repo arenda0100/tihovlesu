@@ -4,350 +4,322 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#101713">
-  <meta name="description" content="Тихо в лесу — загородный отдых, Black House, баня на дровах и фурако.">
-  <title>Тихо в лесу — место, где можно выдохнуть</title>
+
+  <meta name="theme-color" content="#111312">
+  <meta name="description" content="Тихо в лесу — загородный дом, баня на дровах и фурако. Отдых в атмосфере уюта и природы.">
+
+  <title>Тихо в лесу — место, где время замедляется</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
 
 <body>
-  <div class="ambient ambient-one"></div>
-  <div class="ambient ambient-two"></div>
-  <div class="grain"></div>
 
   <header class="header">
-    <a href="#home" class="logo" aria-label="Тихо в лесу — на главную">
-      <span class="logo-symbol">✳</span>
-      <span>ТИХО <span class="logo-light">В ЛЕСУ</span></span>
+    <a href="#home" class="logo">
+      <span class="logo-symbol">Т</span>
+      <span>ТИХО <small>В ЛЕСУ</small></span>
     </a>
+
+    <nav class="nav" id="navigation">
+      <a href="#about">О месте</a>
+      <a href="#spaces">Пространство</a>
+      <a href="#prices">Стоимость</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+
+    <a class="header-link" href="#contacts">Найти нас <span>↗</span></a>
 
     <button class="menu-toggle" id="menuToggle"
       aria-label="Открыть меню" aria-expanded="false">
       <span></span>
       <span></span>
     </button>
-
-    <nav class="navigation" id="navigation">
-      <a href="#place">О месте</a>
-      <a href="#spaces">Пространства</a>
-      <a href="#prices">Стоимость</a>
-      <a href="#contacts" class="nav-contact">Связаться ↗</a>
-    </nav>
   </header>
 
   <main>
-    <!-- ГЛАВНЫЙ ЭКРАН -->
+
     <section class="hero" id="home">
-      <div class="hero-photo-placeholder">
-        <span class="placeholder-icon">✳</span>
-        <span>ЗДЕСЬ БУДЕТ ФОТО ДОМА</span>
-        <small>images/hero.jpg</small>
-      </div>
 
-      <div class="hero-shade"></div>
+      <!-- ПОЗЖЕ ДОБАВИМ ГЛАВНОЕ ФОТО ДОМА В CSS -->
 
-      <div class="hero-content">
-        <div class="eyebrow reveal">
-          <span class="status-dot"></span>
-          ЗАГОРОДНЫЙ ОТДЫХ · МИНСК
-        </div>
+      <div class="hero-overlay"></div>
+      <div class="hero-grain"></div>
 
-        <h1 class="hero-title reveal">
+      <div class="hero-content reveal">
+        <p class="eyebrow">
+          <span class="eyebrow-line"></span>
+          МЕСТО ДЛЯ ВАС И ПРИРОДЫ
+        </p>
+
+        <h1>
           Иногда лучшее,<br>
-          что можно сделать, —<br>
+          что можно сделать —<br>
           <em>это замедлиться.</em>
         </h1>
 
-        <p class="hero-description reveal">
-          Дом среди природы, жар настоящей бани
-          и тёплая вода фурако под открытым небом.
-          Ваше время принадлежит только вам.
+        <p class="hero-description">
+          Дом среди деревьев. Тепло настоящей бани.
+          Горячий чан под открытым небом.
         </p>
 
-        <div class="hero-actions reveal">
-          <a href="#spaces" class="button button-gold">
-            Найти своё место <span>↗</span>
-          </a>
-          <a href="#place" class="text-link">Почувствовать атмосферу ↓</a>
-        </div>
+        <a href="#spaces" class="button button-light">
+          Открыть своё место <span>↘</span>
+        </a>
       </div>
 
       <div class="hero-bottom">
-        <span>МЕНЬШЕ СУЕТЫ. БОЛЬШЕ ЖИЗНИ.</span>
-        <span class="hero-coordinates">53° N &nbsp; · &nbsp; 27° E</span>
+        <span>МИНСКАЯ ОБЛАСТЬ</span>
+        <span class="scroll-indicator"><span></span> ЛИСТАЙТЕ ВНИЗ</span>
+        <span>ТИШИНА — ЭТО РОСКОШЬ</span>
       </div>
 
-      <div class="hero-orbit orbit-one"></div>
-      <div class="hero-orbit orbit-two"></div>
+      <div class="hero-index">01 <span>/ 04</span></div>
     </section>
 
-    <!-- О МЕСТЕ -->
-    <section class="intro section" id="place">
-      <div class="section-kicker reveal">01 / ФИЛОСОФИЯ МЕСТА</div>
+    <div class="ribbon" aria-label="Тихо в лесу — время принадлежит вам">
+      <div class="ribbon-track" aria-hidden="true">
+        <span>ВРЕМЯ ПРИНАДЛЕЖИТ ВАМ</span><i>✳</i>
+        <span>ВЫДОХНИТЕ</span><i>✳</i>
+        <span>ПОЧУВСТВУЙТЕ ТИШИНУ</span><i>✳</i>
+        <span>ВРЕМЯ ПРИНАДЛЕЖИТ ВАМ</span><i>✳</i>
+        <span>ВЫДОХНИТЕ</span><i>✳</i>
+        <span>ПОЧУВСТВУЙТЕ ТИШИНУ</span><i>✳</i>
+      </div>
+    </div>
 
-      <div class="intro-grid">
-        <h2 class="section-heading reveal">
-          Не просто<br>отдых.<br>
-          <em>Перезагрузка.</em>
+    <section class="intro section" id="about">
+      <div class="intro-label reveal">
+        <span class="small-number">01 — О МЕСТЕ</span>
+        <span class="tiny-line"></span>
+      </div>
+
+      <div class="intro-content reveal">
+        <p class="eyebrow">НЕ ПРОСТО ОТДЫХ</p>
+
+        <h2>
+          Мир может<br>
+          <em>немного подождать.</em>
         </h2>
 
-        <div class="intro-copy reveal">
-          <span class="decorative-star">✳</span>
-          <p>
-            «Тихо в лесу» — пространство, где не нужно
-            никуда спешить. Здесь утро начинается
-            спокойно, вечера становятся длиннее,
-            а обычные моменты превращаются в воспоминания.
-          </p>
-          <a href="#spaces" class="underlined-link">
-            Открыть наши пространства <span>↘</span>
-          </a>
+        <p class="intro-text">
+          «Тихо в лесу» — пространство, где не нужно никуда спешить.
+          Только лес за окном, уютный дом, пар от горячего чана
+          и вечера, которые хочется продлить.
+        </p>
+
+        <div class="intro-note">
+          <span class="note-mark">✳</span>
+          <span>Меньше шума. Больше жизни.</span>
         </div>
       </div>
 
-      <div class="marquee" aria-label="Дом, природа, тепло и тишина">
-        <div class="marquee-track" aria-hidden="true">
-          <span>ТИШИНА</span><i>✳</i>
-          <span>ТЕПЛО</span><i>✳</i>
-          <span>ПРИРОДА</span><i>✳</i>
-          <span>ВРЕМЯ ДЛЯ СЕБЯ</span><i>✳</i>
-          <span>ТИШИНА</span><i>✳</i>
-          <span>ТЕПЛО</span><i>✳</i>
-          <span>ПРИРОДА</span><i>✳</i>
-          <span>ВРЕМЯ ДЛЯ СЕБЯ</span><i>✳</i>
-        </div>
+      <div class="intro-decoration" aria-hidden="true">
+        <span></span><span></span><span></span>
       </div>
     </section>
 
-    <!-- КАРТОЧКИ -->
     <section class="spaces section" id="spaces">
-      <div class="section-kicker reveal">02 / ВАШЕ ПРОСТРАНСТВО</div>
-
-      <div class="section-title-row">
-        <h2 class="section-heading reveal">
-          Три способа<br>почувствовать <em>тишину.</em>
-        </h2>
-        <p class="section-note reveal">
-          Нажмите на карточку, чтобы посмотреть
-          пространство и фотографии.
+      <div class="section-heading reveal">
+        <div>
+          <p class="eyebrow">ВАШЕ МЕСТО СИЛЫ</p>
+          <h2>Три способа<br><em>почувствовать покой.</em></h2>
+        </div>
+        <p class="heading-note">
+          Выберите настроение<br>своего отдыха.
         </p>
       </div>
 
-      <div class="spaces-grid">
+      <div class="space-grid">
 
-        <button class="space-card reveal" data-gallery="house"
-          aria-label="Посмотреть фотографии дома Black House">
-          <div class="space-image image-house">
-            <span class="image-placeholder">
-              <span>✳</span>
-              ФОТО ДОМА
-              <small>images/house-1.jpg</small>
-            </span>
-            <span class="image-index">01 — 03</span>
-            <span class="card-arrow">↗</span>
+        <article class="space-card reveal">
+          <div class="space-image house-image">
+            <!-- ФОТО ДОМА ДОБАВИМ ПОЗЖЕ -->
+            <span class="image-placeholder">ФОТО ДОМА</span>
+            <span class="card-number">01</span>
+            <span class="image-caption">PRIVATE RETREAT</span>
           </div>
 
           <div class="space-info">
-            <div class="space-category">ПРОСТРАНСТВО ДЛЯ ЖИЗНИ</div>
-            <h3>Black House</h3>
-            <p>Тёмные фактуры, уютный интерьер и отдых среди природы.</p>
-            <div class="space-footer">
-              <span>До 8 гостей</span>
-              <span class="discover">Смотреть <b>↗</b></span>
+            <div>
+              <p class="card-kicker">ВАШЕ ПРОСТРАНСТВО</p>
+              <h3>Дом <em>Black House</em></h3>
             </div>
+            <a href="#prices" class="round-link" aria-label="Стоимость дома">↗</a>
           </div>
-        </button>
 
-        <button class="space-card reveal" data-gallery="bath"
-          aria-label="Посмотреть фотографии бани">
-          <div class="space-image image-bath">
-            <span class="image-placeholder">
-              <span>✳</span>
-              ФОТО БАНИ
-              <small>images/bath-1.jpg</small>
-            </span>
-            <span class="image-index">01 — 03</span>
-            <span class="card-arrow">↗</span>
+          <p class="space-description">
+            Уютный загородный дом для отдыха вдали от городского ритма.
+          </p>
+
+          <div class="space-meta">
+            <span>До 8 гостей</span>
+            <a href="#prices">Стоимость ниже ↓</a>
+          </div>
+        </article>
+
+        <article class="space-card reveal">
+          <div class="space-image bath-image">
+            <!-- ФОТО БАНИ ДОБАВИМ ПОЗЖЕ -->
+            <span class="image-placeholder">ФОТО БАНИ</span>
+            <span class="card-number">02</span>
+            <span class="image-caption">WOOD-FIRED SAUNA</span>
           </div>
 
           <div class="space-info">
-            <div class="space-category">РИТУАЛ ТЕПЛА</div>
-            <h3>Баня на дровах</h3>
-            <p>Живой огонь, аромат дерева и настоящее расслабление.</p>
-            <div class="space-footer">
-              <span>Входит в стоимость</span>
-              <span class="discover">Смотреть <b>↗</b></span>
+            <div>
+              <p class="card-kicker">ТЕПЛО И РАВНОВЕСИЕ</p>
+              <h3>Баня <em>на дровах</em></h3>
             </div>
+            <a href="#prices" class="round-link" aria-label="Стоимость бани">↗</a>
           </div>
-        </button>
 
-        <button class="space-card reveal" data-gallery="furako"
-          aria-label="Посмотреть фотографии фурако">
-          <div class="space-image image-furako">
-            <span class="image-placeholder">
-              <span>✳</span>
-              ФОТО ФУРАКО
-              <small>images/furako-1.jpg</small>
-            </span>
-            <span class="image-index">01 — 03</span>
-            <span class="card-arrow">↗</span>
+          <p class="space-description">
+            Живой огонь, аромат дерева и настоящее удовольствие от пара.
+          </p>
+
+          <div class="space-meta">
+            <span>Традиционный жар</span>
+            <a href="#prices">Стоимость ниже ↓</a>
+          </div>
+        </article>
+
+        <article class="space-card reveal">
+          <div class="space-image furako-image">
+            <!-- ФОТО ФУРАКО ДОБАВИМ ПОЗЖЕ -->
+            <span class="image-placeholder">ФОТО ФУРАКО</span>
+            <span class="card-number">03</span>
+            <span class="image-caption">OPEN-AIR RITUAL</span>
           </div>
 
           <div class="space-info">
-            <div class="space-category">ТЕПЛО ПОД ОТКРЫТЫМ НЕБОМ</div>
-            <h3>Фурако</h3>
-            <p>Горячая вода, свежий воздух и минуты без лишних мыслей.</p>
-            <div class="space-footer">
-              <span>Входит в стоимость</span>
-              <span class="discover">Смотреть <b>↗</b></span>
+            <div>
+              <p class="card-kicker">РИТУАЛ ПЕРЕЗАГРУЗКИ</p>
+              <h3>Фурако <em>под небом</em></h3>
             </div>
+            <a href="#prices" class="round-link" aria-label="Стоимость фурако">↗</a>
           </div>
-        </button>
+
+          <p class="space-description">
+            Горячая вода, свежий воздух и ощущение, будто время остановилось.
+          </p>
+
+          <div class="space-meta">
+            <span>Отдых на природе</span>
+            <a href="#prices">Стоимость ниже ↓</a>
+          </div>
+        </article>
 
       </div>
     </section>
 
-    <!-- СТОИМОСТЬ -->
-    <section class="prices section" id="prices">
-      <div class="section-kicker reveal">03 / СТОИМОСТЬ ПРОЖИВАНИЯ</div>
+    <section class="quote-section">
+      <div class="quote-orbit" aria-hidden="true"></div>
 
-      <div class="section-title-row">
-        <h2 class="section-heading reveal">
-          Выберите свой<br><em>ритм отдыха.</em>
-        </h2>
-        <p class="section-note reveal">
-          Стоимость за проживание с учётом
-          количества гостей.
+      <div class="quote-content reveal">
+        <span class="quote-symbol">“</span>
+        <p>Есть места,<br>в которых <em>становится тише</em><br>даже внутри.</p>
+        <span class="quote-caption">ТИХО В ЛЕСУ · ВАШЕ ВРЕМЯ</span>
+      </div>
+    </section>
+
+    <section class="prices section" id="prices">
+      <div class="section-heading reveal">
+        <div>
+          <p class="eyebrow">ПРОЗРАЧНО И ПРОСТО</p>
+          <h2>Стоимость <em>отдыха.</em></h2>
+        </div>
+        <p class="heading-note">
+          Выберите день,<br>который будет вашим.
         </p>
       </div>
 
       <div class="price-panel reveal">
-        <div class="price-column">
-          <div class="price-heading">
-            <span>01</span>
-            <h3>Будни</h3>
-            <small>ВС — ЧТ</small>
-          </div>
-
-          <div class="price-row">
-            <span>До 4 гостей</span>
-            <strong>1100 <small>BYN</small></strong>
-          </div>
-          <div class="price-row">
-            <span>До 6 гостей</span>
-            <strong>1170 <small>BYN</small></strong>
-          </div>
-          <div class="price-row">
-            <span>До 8 гостей</span>
-            <strong>1270 <small>BYN</small></strong>
-          </div>
+        <div class="price-top">
+          <span>01 / BLACK HOUSE</span>
+          <span>БУДНИ И ВЫХОДНЫЕ</span>
         </div>
 
-        <div class="price-column">
-          <div class="price-heading">
-            <span>02</span>
-            <h3>Выходные</h3>
-            <small>ПТ — СБ</small>
-          </div>
-
-          <div class="price-row">
-            <span>До 4 гостей</span>
-            <strong>1330 <small>BYN</small></strong>
-          </div>
-          <div class="price-row">
-            <span>До 6 гостей</span>
-            <strong>1440 <small>BYN</small></strong>
-          </div>
-          <div class="price-row">
-            <span>До 8 гостей</span>
-            <strong>1500 <small>BYN</small></strong>
-          </div>
-        </div>
-
-        <div class="price-included">
-          <span class="included-star">✳</span>
+        <div class="price-row">
           <div>
-            <strong>Больше, чем просто дом.</strong>
-            <p>Проживание + фурако + баня на дровах</p>
+            <h3>Будни <span>(вс–чт)</span></h3>
+            <p>Пространство для спокойного отдыха</p>
           </div>
-          <span class="included-label">ВКЛЮЧЕНО</span>
+          <div class="price-options">
+            <p>До 4 гостей <strong>1100 Br</strong></p>
+            <p>До 6 гостей <strong>1170 Br</strong></p>
+            <p>До 8 гостей <strong>1270 Br</strong></p>
+          </div>
         </div>
-      </div>
 
-      <p class="price-disclaimer">
-        Стоимость указана по предоставленному прайсу.
-        Актуальность цен и условия размещения уточняйте у владельца.
-      </p>
+        <div class="price-row">
+          <div>
+            <h3>Выходные <span>(пт–сб)</span></h3>
+            <p>Время для особенных вечеров</p>
+          </div>
+          <div class="price-options">
+            <p>До 4 гостей <strong>1330 Br</strong></p>
+            <p>До 6 гостей <strong>1440 Br</strong></p>
+            <p>До 8 гостей <strong>1500 Br</strong></p>
+          </div>
+        </div>
+
+        <div class="included">
+          <span class="included-icon">✳</span>
+          <div>
+            <h3>Больше, чем просто дом.</h3>
+            <p>Проживание + фурако + баня на дровах включены в стоимость.</p>
+          </div>
+        </div>
+
+        <p class="price-footnote">
+          Условия и доступность уточняйте напрямую у владельца.
+        </p>
+      </div>
     </section>
 
-    <!-- ФИНАЛ -->
     <section class="final-section" id="contacts">
       <div class="final-glow"></div>
+
       <div class="final-content reveal">
-        <div class="section-kicker">04 / ВАШЕ ВРЕМЯ</div>
-        <h2>Позвольте себе<br><em>немного тишины.</em></h2>
+        <p class="eyebrow">ВАШЕ МЕСТО УЖЕ ЖДЁТ</p>
+        <h2>Побудьте<br><em>немного вне мира.</em></h2>
         <p>
-          Иногда для счастья нужно совсем немного:
-          близкие рядом и место, где спокойно.
+          Иногда для счастья достаточно одного свободного дня,
+          близких людей и места, где тихо.
         </p>
 
-        <a href="https://t.me/tihovlesyminsk"
-          target="_blank" rel="noopener noreferrer"
-          class="button button-gold">
+        <a class="button button-light"
+          href="https://t.me/tihovlesyminsk"
+          target="_blank" rel="noopener noreferrer">
           Связаться с нами <span>↗</span>
         </a>
       </div>
 
       <div class="final-bottom">
-        <span>ТИХО В ЛЕСУ</span>
-        <span>МЕСТО, ГДЕ МОЖНО ВЫДОХНУТЬ</span>
-        <a href="#home">НАВЕРХ ↑</a>
+        <a href="#home" class="logo footer-logo">
+          <span class="logo-symbol">Т</span>
+          <span>ТИХО <small>В ЛЕСУ</small></span>
+        </a>
+
+        <span>МЕСТО, ГДЕ ВРЕМЯ ЗАМЕДЛЯЕТСЯ</span>
+
+        <a href="#home" class="back-top">НАВЕРХ ↑</a>
       </div>
     </section>
+
   </main>
 
-  <!-- ГАЛЕРЕЯ -->
-  <div class="gallery-modal" id="galleryModal"
-    role="dialog" aria-modal="true" aria-labelledby="galleryTitle"
-    aria-hidden="true">
-    <div class="modal-backdrop" data-close></div>
-
-    <div class="modal-panel">
-      <button class="modal-close" id="modalClose"
-        aria-label="Закрыть галерею">✕</button>
-
-      <div class="modal-kicker">ТИХО В ЛЕСУ / ГАЛЕРЕЯ</div>
-      <h2 id="galleryTitle">Black House</h2>
-      <p class="modal-description" id="galleryDescription">
-        Пространство для отдыха
-      </p>
-
-      <div class="gallery-grid" id="galleryGrid"></div>
-
-      <div class="gallery-controls">
-        <span id="galleryCounter">01 / 03</span>
-        <div class="gallery-navigation">
-          <button id="galleryPrev" aria-label="Предыдущее фото">←</button>
-          <button id="galleryNext" aria-label="Следующее фото">→</button>
-        </div>
-      </div>
-
-      <p class="modal-hint">
-        Здесь появятся фотографии, которые вы предоставите.
-      </p>
-    </div>
-  </div>
-
   <footer class="footer">
-    <span>© ТИХО В ЛЕСУ</span>
-    <span>СОЗДАНО С ЛЮБОВЬЮ К ТИШИНЕ</span>
+    <span>© <span id="year"></span> ТИХО В ЛЕСУ</span>
+    <span>СОЗДАНО С ТИШИНОЙ ВНУТРИ.</span>
   </footer>
+
 </body>
 </html>
 
