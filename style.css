@@ -1254,6 +1254,8 @@ h1 em, h2 em {
   }
 }
 
+/* Старые стили Instagram — оставлены без изменений */
+
 .contact-social {
   display: inline-flex;
   align-items: center;
@@ -1299,6 +1301,25 @@ h1 em, h2 em {
 
   .contact-social-name {
     font-size: 12px;
+  }
+}
+
+/* Instagram: те же размеры и оформление, что у Telegram */
+
+.contact-instagram {
+  display: flex;
+  width: fit-content;
+  min-width: 0;
+  margin: 14px auto 0;
+  justify-content: space-between;
+  gap: 24px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 640px) {
+  .contact-instagram {
+    margin-top: 12px;
+    max-width: 100%;
   }
 }
 
