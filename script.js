@@ -25,9 +25,18 @@ if (menuToggle && navigation) {
       menuToggle.setAttribute("aria-label", "Открыть меню");
     });
   });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      navigation.classList.remove("open");
+      menuToggle.classList.remove("active");
+      menuToggle.setAttribute("aria-expanded", "false");
+      menuToggle.setAttribute("aria-label", "Открыть меню");
+    }
+  });
 }
 
-// Плавное появление элементов при прокрутке
+// Плавное появление блоков при прокрутке
 const revealElements = document.querySelectorAll(".reveal");
 
 if ("IntersectionObserver" in window) {
@@ -42,7 +51,7 @@ if ("IntersectionObserver" in window) {
     },
     {
       threshold: 0.08,
-      rootMargin: "0px 0px -20px 0px"
+      rootMargin: "0px 0px -24px 0px"
     }
   );
 
@@ -61,4 +70,3 @@ const yearElement = document.querySelector("#year");
 if (yearElement) {
   yearElement.textContent = new Date().getFullYear();
 }
-
